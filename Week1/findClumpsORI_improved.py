@@ -1,3 +1,5 @@
+#error in this file
+
 import time
 start_time = time.time()
 
