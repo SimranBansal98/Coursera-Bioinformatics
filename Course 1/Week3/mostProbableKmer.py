@@ -11,9 +11,9 @@ def getKmers(dna, l):
         i=i+1
     return kmers
 
-def MostProbableKmer(profile, kmers):
+def MostProbableKmer(profile, dna,l):
+    kmers = getKmers(dna,l)
     profile = numpy.array(profile)
-    #print(profile)
     probableKmer=None
     probability = 0
     for k in kmers:
@@ -38,18 +38,16 @@ def MostProbableKmer(profile, kmers):
             probability = p_k
             probableKmer = k
 
+    #print(probableKmer, end = " ")
     return probableKmer
 
-def main(profile,dna,l):
-    kmers = getKmers(dna,l)
-    probableKmer = MostProbableKmer(profile, kmers)
-    #print(probableKmer)
-    return probableKmer
-
-dna = "CACGTCAATCAC"
-profile = [[0.6, 0.6, 0],
-    [0.33333333, 0.         ,0.        ],
-    [0.         ,0.33333333 ,0.66666667],
-    [0.         ,0.         ,0.33333333]]
-l=3
-main(profile,dna,l)
+if __name__ == '__main__':
+    
+    dna = "CACGTCAATCAC"
+    profile = [[0.6, 0.6, 0],
+        [0.33333333, 0.         ,0.        ],
+        [0.         ,0.33333333 ,0.66666667],
+        [0.         ,0.         ,0.33333333]]
+    l=3
+    probableKmer = MostProbableKmer(profile,dna, l)
+    print(probableKmer)
